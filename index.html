@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- ============================================================
+     head.html — 全デモ共通の <head> 不変ブロック（SEO）。
+     各デモの <head> に必ず含める。{{...}} は案件情報で差し替え。
+     ============================================================ -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>㈱赤羽工務店｜工務店</title>
+<meta name="description" content="渋谷区の㈱赤羽工務店は、確かな職人技術と洗練されたデザインで、お客様の理想の住まいを創造します。都市に調和する上質な建築をご提案。">
+<link rel="canonical" href="https://mochigoma09.github.io/demo-385f93/">
+
+<!-- OGP -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:site_name" content="㈱赤羽工務店">
+<meta property="og:title" content="㈱赤羽工務店｜工務店">
+<meta property="og:description" content="渋谷区の㈱赤羽工務店は、確かな職人技術と洗練されたデザインで、お客様の理想の住まいを創造します。都市に調和する上質な建築をご提案。">
+<meta property="og:url" content="https://mochigoma09.github.io/demo-385f93/">
+<meta property="og:image" content="">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="㈱赤羽工務店｜工務店">
+<meta name="twitter:description" content="渋谷区の㈱赤羽工務店は、確かな職人技術と洗練されたデザインで、お客様の理想の住まいを創造します。都市に調和する上質な建築をご提案。">
+<meta name="twitter:image" content="">
+
+<!-- 構造化データ（GeneralContractor は preset の schema.orgサブタイプ。住所/電話は実値へ） -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "Organization", "@id": "https://mochigoma09.github.io/demo-385f93/#org", "name": "㈱赤羽工務店", "url": "https://mochigoma09.github.io/demo-385f93/" },
+    { "@type": "WebSite", "@id": "https://mochigoma09.github.io/demo-385f93/#site", "url": "https://mochigoma09.github.io/demo-385f93/", "name": "㈱赤羽工務店", "publisher": { "@id": "https://mochigoma09.github.io/demo-385f93/#org" } },
+    { "@type": "GeneralContractor", "@id": "https://mochigoma09.github.io/demo-385f93/#biz", "name": "㈱赤羽工務店", "url": "https://mochigoma09.github.io/demo-385f93/", "telephone": "03-3466-1936", "address": { "@type": "PostalAddress", "addressCountry": "JP", "addressRegion": "東京都", "addressLocality": "渋谷区", "streetAddress": "西原１丁目２６−５ セントラル幡ヶ谷" } }
+  ]
+}
+</script>
+
+<!-- フォント（コンセプトで差し替え） / 土台CSS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base/base.css">
+<!-- ↑ 案件コンセプトのトークンは、この後に <style>
+/* ============================================================
+   base.css — 全デモ共通の「不変の土台」（品質の担保。見た目の個性はここに持たせない）
+   各デモHTMLは必ずこれを読み込み、レイアウト/世界観は自由に作る。
+   固定するのは：リセット / トークンの“契約”（変数名）/ a11y / 再利用部品 のみ。
+   ============================================================ */
+
+/* --- デザイントークンの契約（値は案件コンセプトで :root を上書きする） --- */
+:root {
+  --color-primary: #1f3a5f;
+  --color-accent:  #b89150;
+  --color-text:    #2a2e35;
+  --color-bg:      #ffffff;
+  --color-surface: #f5f7fa;
+  --color-line:    rgba(0, 0, 0, 0.12);
+  --font-heading:  "Noto Serif JP", serif;
+  --font-body:     system-ui, -apple-system, "Noto Sans JP", sans-serif;
+  --radius:        14px;
+  --container:     1120px;
+}
+
+/* --- reset（wp-theme-starter から移植） --- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { min-height: 100vh; font-family: var(--font-body); color: var(--color-text); background: var(--color-bg); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+img, svg, video, picture { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; background: none; border: 0; cursor: pointer; }
+h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.4; }
+ul, ol { list-style: none; padding: 0; }
+
+/* --- a11y（不変） --- */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; } }
+
+/* --- 再利用部品（配色/形はトークン依存＝案件で変わる。構造だけ共通） --- */
+.l-wrapper { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 20px; }
+
+.c-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 14px 32px; font-weight: 700; border-radius: 999px; color: #fff; background: var(--color-primary); transition: transform .25s, box-shadow .25s; }
+.c-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.15); }
+
+/* 全画面ハンバーガー（1024px以下） */
+.c-hamburger { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; position: relative; z-index: 1001; }
+.c-hamburger__bars, .c-hamburger__bars::before, .c-hamburger__bars::after { content: ""; display: block; width: 24px; height: 2px; background: var(--color-text); transition: transform .3s, opacity .3s; }
+.c-hamburger__bars { position: relative; }
+.c-hamburger__bars::before { position: absolute; top: -7px; left: 0; }
+.c-hamburger__bars::after  { position: absolute; top: 7px;  left: 0; }
+.c-hamburger[aria-expanded="true"] .c-hamburger__bars { background: transparent; }
+.c-hamburger[aria-expanded="true"] .c-hamburger__bars::before { transform: translateY(7px) rotate(45deg); }
+.c-hamburger[aria-expanded="true"] .c-hamburger__bars::after  { transform: translateY(-7px) rotate(-45deg); }
+.c-nav { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; background: color-mix(in srgb, var(--color-bg) 92%, transparent); backdrop-filter: blur(12px); opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s; font-family: var(--font-heading); font-size: 1.2rem; }
+.c-nav.is-open { opacity: 1; visibility: visible; }
+@media (min-width: 1025px) {
+  .c-hamburger { display: none; }
+  .c-nav { position: static; flex-direction: row; gap: 32px; background: none; backdrop-filter: none; opacity: 1; visibility: visible; font-size: 1rem; }
+}
+
+/* スクロールリビール（nav.jsがJSで付与する。JS無効環境では何も付かず常に表示） */
+.js-reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.js-reveal.is-inview { opacity: 1; transform: none; }
+
+/* 追従フローティングCTA（1024px以下） */
+.c-floating-cta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 800; display: flex; justify-content: center; padding: 0 16px 14px; pointer-events: none; }
+.c-floating-cta .c-btn { pointer-events: auto; width: 100%; max-width: 520px; box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+body { padding-bottom: 84px; } /* CTA分の余白 */
+@media (min-width: 1025px) { .c-floating-cta { display: none; } body { padding-bottom: 0; } }
+
+</style>
+<style>:root{ --color-primary: ...; }</style> で上書きする -->
+<style>
+  :root {
+    --color-primary: #3B4A5B;
+    --color-accent: #C49B62;
+    --color-surface: #F8F8F8;
+    --color-text: #2A2A2A;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Noto Sans JP', sans-serif;
+    --radius: 0; /* 角丸は0でシャープに */
+  }
+
+  /* カスタムスタイル */
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .l-wrapper {
+    padding-inline: clamp(20px, 5vw, 60px);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+
+  .c-btn {
+    border-radius: var(--radius);
+    transition: background-color .3s ease, transform .3s ease, box-shadow .3s ease;
+  }
+  .c-btn:hover {
+    background-color: color-mix(in srgb, var(--color-primary) 80%, black);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.1);
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px clamp(20px, 5vw, 60px);
+    background-color: var(--color-surface);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .header__logo {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+  .header__logo span {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: var(--color-text);
+  }
+
+  /* Navigation */
+  .c-nav a {
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 500;
+    color: var(--color-primary);
+    position: relative;
+    padding-bottom: 5px;
+  }
+  .c-nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-accent);
+    transition: width .3s ease;
+  }
+  .c-nav a:hover::after {
+    width: 100%;
+  }
+  @media (max-width: 1024px) {
+    .c-nav {
+      background: color-mix(in srgb, var(--color-surface) 95%, transparent);
+    }
+    .c-nav a {
+      font-size: 1.8rem;
+    }
+  }
+
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 0;
+    overflow: hidden;
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--color-primary) 30%, rgba(59, 74, 91, 0.6) 60%, rgba(59, 74, 91, 0.4) 100%);
+    z-index: -1;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    padding-left: clamp(20px, 5vw, 60px);
+    color: #fff;
+  }
+
+  .hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 15px;
+  }
+
+  .hero__title {
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+    letter-spacing: -0.03em;
+  }
+
+  .hero__description {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+
+  .hero .c-btn {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    font-weight: 700;
+    padding: 16px 40px;
+  }
+  .hero .c-btn:hover {
+    background-color: color-mix(in srgb, var(--color-accent) 80%, black);
+    color: #fff;
+  }
+
+  /* General Section Styling */
+  .section-spacing {
+    padding-top: clamp(80px, 10vw, 140px);
+    padding-bottom: clamp(80px, 10vw, 140px);
+  }
+
+  .section-title {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-accent);
+  }
+
+  .section-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--color-primary);
+    margin-bottom: 60px;
+    max-width: 800px;
+  }
+
+  /* Works Section */
+  .works__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+  }
+
+  .works__item {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .works__item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  }
+
+  .works__item-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+  }
+
+  .works__item-content {
+    padding: 30px;
+  }
+
+  .works__item-title {
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    margin-bottom: 15px;
+    color: var(--color-primary);
+  }
+
+  .works__item-description {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text);
+  }
+
+  /* Flow Section */
+  .flow__steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .flow__step {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    position: relative;
+  }
+  @media (min-width: 768px) {
+    .flow__step {
+      gap: 60px;
+    }
+    .flow__step:nth-child(even) {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+    .flow__step:nth-child(even) .flow__step-number {
+      margin-left: auto;
+    }
+    .flow__step:nth-child(even) .flow__step-content {
+      border-right: 2px solid var(--color-accent);
+      border-left: none;
+      padding-right: 40px;
+      padding-left: 0;
+    }
+    .flow__step:nth-child(odd) .flow__step-content {
+      border-left: 2px solid var(--color-accent);
+      padding-left: 40px;
+    }
+  }
+
+
+  .flow__step-number {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--color-accent);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 80px; /* 固定幅 */
+    text-align: center;
+  }
+
+  .flow__step-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex-grow: 1;
+  }
+
+  .flow__step-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    margin-bottom: 15px;
+    color: var(--color-primary);
+  }
+
+  .flow__step-description {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  /* Company Section */
+  .company__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+  @media (min-width: 768px) {
+    .company__content {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .company__info dl {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px 30px;
+    margin-top: 30px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    padding-top: 30px;
+  }
+
+  .company__info dt {
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .company__info dd {
+    font-size: 1rem;
+  }
+
+  .company__image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* Voice Section */
+  .voice__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+  }
+
+  .voice__item {
+    background-color: #fff;
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .voice__item::before {
+    content: '“';
+    font-family: var(--font-heading);
+    font-size: 8rem;
+    color: rgba(0,0,0,0.05);
+    position: absolute;
+    top: -30px;
+    left: 10px;
+    z-index: 0;
+    line-height: 1;
+  }
+
+  .voice__text {
+    position: relative;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    z-index: 1;
+  }
+
+  .voice__author {
+    font-weight: 500;
+    color: var(--color-primary);
+    display: block;
+    text-align: right;
+    font-size: 0.95rem;
+  }
+
+  /* Contact Section */
+  .contact__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 60px;
+    background-color: #fff;
+    padding: clamp(40px, 8vw, 80px);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  @media (min-width: 768px) {
+    .contact__content {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .contact__info h3 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: 25px;
+    color: var(--color-primary);
+  }
+
+  .contact__info p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .contact__info ul {
+    margin-top: 30px;
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact__info li {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .contact__info li strong {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .contact__map {
+    background-color: var(--color-surface);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    font-size: 1.1rem;
+    border: 1px dashed rgba(0,0,0,0.1);
+  }
+
+  /* Footer */
+  footer {
+    background-color: var(--color-primary);
+    color: #fff;
+    padding: 40px clamp(20px, 5vw, 60px);
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  footer p {
+    margin: 0;
+  }
+
+  /* Utility classes for geometric motif and asymmetry */
+  .u-line-bottom {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+</style>
+<style>:root{--color-primary:#3B4A5B;--color-accent:#C49B62;--color-surface:#F8F8F8;--color-text:#2A2A2A;--font-heading:'Cormorant Garamond', serif;--font-body:'Noto Sans JP', sans-serif;--radius:0;}</style>
+</head>
+<body>
+  <h1 class="sr-only">渋谷区の工務店 ㈱赤羽工務店</h1>
+
+  <header>
+    <div class="header__logo">
+      ㈱赤羽工務店 <span>Akabane Kōmuten</span>
+    </div>
+    <button class="c-hamburger js-nav-toggle" aria-controls="nav" aria-expanded="false" aria-label="メニューを開く">
+      <span class="c-hamburger__bars"></span>
+    </button>
+    <nav id="nav" class="c-nav">
+      <a href="#hero">TOP</a>
+      <a href="#works">施工事例</a>
+      <a href="#flow">家づくりの流れ</a>
+      <a href="#company">会社概要</a>
+      <a href="#voice">お客様の声</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section data-section="hero" id="hero" class="hero">
+      <img src="https://images.unsplash.com/photo-1483366774565-c783b9f70e2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBtaW5pbWFsaXN0JTIwdXJiYW4lMjBhcmNoaXNlY3R1cmV8ZW58MHwwfHx8MTc4NDIwMDAzMHww&ixlib=rb-4.1.0&q=80&w=1080" alt="都会のモダンな建築物" class="hero__bg">
+      <div class="hero__overlay"></div>
+      <div class="l-wrapper hero__content">
+        <p class="hero__eyebrow">Architectural Aesthetics in Shibuya</p>
+        <h2 class="hero__title">都市に息づく、<br>洗練された住空間を</h2>
+        <p class="hero__description">
+          渋谷という感度の高いエリアで、確かな職人技術と最先端のデザインを融合。
+          お客様の理想を形にする、唯一無二の住まいを創造します。
+        </p>
+        <a href="#contact" class="c-btn">お問い合わせ</a>
+      </div>
+    </section>
+
+    <section data-section="works" id="works" class="section-spacing l-wrapper">
+      <h2 class="section-title">施工事例</h2>
+      <p class="section-subtitle">
+        渋谷の都市景観に調和しながらも、個性を放つ建築。
+        私たちの手掛けた、機能美と快適性を追求した住まいの数々をご覧ください。
+      </p>
+
+      <div class="works__grid">
+        <article class="works__item">
+          <img src="https://images.unsplash.com/photo-1712232907812-4bd219a99a49?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBqYXBhbmVzZSUyMGludGVyaW9yJTIwZGVzaWdufGVufDB8MHx8fDE3ODQyMDAwMzJ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="モダンな和風リビング" class="works__item-image">
+          <div class="works__item-content">
+            <h3 class="works__item-title">渋谷モダンレジデンス</h3>
+            <p class="works__item-description">
+              都心にありながら、自然光を最大限に取り入れた開放的な空間。
+              ミニマムなデザインの中に、上質な素材と職人技が光ります。
+            </p>
+          </div>
+        </article>
+
+        <article class="works__item">
+          <img src="https://images.unsplash.com/photo-1531591022136-eb8b0da1e6d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBtaW5pbWFsaXN0JTIwdXJiYW4lMjBhcmNoaXNlY3R1cmV8ZW58MHwwfHx8MTc4NDIwMDAzMHww&ixlib=rb-4.1.0&q=80&w=1080" alt="コンクリートと木材の現代建築" class="works__item-image">
+          <div class="works__item-content">
+            <h3 class="works__item-title">恵比寿の隠れ家</h3>
+            <p class="works__item-description">
+              コンクリートと天然木が織りなす、都会的ながらも温かみのある住まい。
+              プライバシーを守りつつ、デザイン性を追求しました。
+            </p>
+          </div>
+        </article>
+
+        <article class="works__item">
+          <img src="https://images.unsplash.com/photo-1753552502151-93914d36ecf2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwyfHxsdXh1cnklMjBqYXBhbmVzZSUyMGludGVyaW9yJTIwZGVzaWdufGVufDB8MHx8fDE3ODQyMDAwMzJ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="高級感のある和風インテリア" class="works__item-image">
+          <div class="works__item-content">
+            <h3 class="works__item-title">代官山の光と影</h3>
+            <p class="works__item-description">
+              計算された光の取り入れ方と影の演出で、時間とともに表情を変える空間。
+              細部に宿る職人のこだわりが、日常を豊かに彩ります。
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section data-section="flow" id="flow" class="section-spacing l-wrapper" style="background-color: #fff; border: 1px solid rgba(0,0,0,0.05);">
+      <h2 class="section-title">家づくりの流れ</h2>
+      <p class="section-subtitle">
+        お客様の理想を形にするため、一つ一つのプロセスを丁寧に進めます。
+        透明性と信頼を大切にした、確かな家づくりのステップをご紹介します。
+      </p>
+
+      <div class="flow__steps">
+        <div class="flow__step">
+          <div class="flow__step-number">01</div>
+          <div class="flow__step-content">
+            <h3 class="flow__step-title">ご相談・ヒアリング</h3>
+            <p class="flow__step-description">
+              お客様の夢やライフスタイル、ご要望をじっくりお伺いします。
+              土地探しから資金計画まで、家づくりに関するあらゆるご相談に対応いたします。
+            </p>
+          </div>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__step-number">02</div>
+          <div class="flow__step-content">
+            <h3 class="flow__step-title">プランニング・設計</h3>
+            <p class="flow__step-description">
+              ヒアリング内容に基づき、お客様だけのオーダーメイドプランをご提案。
+              デザイン性と機能性を両立させた、最適な設計を行います。
+            </p>
+          </div>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__step-number">03</div>
+          <div class="flow__step-content">
+            <h3 class="flow__step-title">お見積もり・ご契約</h3>
+            <p class="flow__step-description">
+              詳細なプランとお見積もりをご提示し、ご納得いただいた上でご契約となります。
+              明瞭な価格提示と丁寧な説明をお約束します。
+            </p>
+          </div>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__step-number">04</div>
+          <div class="flow__step-content">
+            <h3 class="flow__step-title">施工・品質管理</h3>
+            <p class="flow__step-description">
+              経験豊富な職人が、確かな技術で丁寧に施工を進めます。
+              厳格な品質管理体制のもと、安心安全な住まいを築き上げます。
+            </p>
+          </div>
+        </div>
+
+        <div class="flow__step">
+          <div class="flow__step-number">05</div>
+          <div class="flow__step-content">
+            <h3 class="flow__step-title">お引き渡し・アフターサポート</h3>
+            <p class="flow__step-description">
+              完成した住まいをお引き渡し後も、長期にわたるアフターサポートで安心を提供。
+              お客様との末永いお付き合いを大切にします。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section data-section="company" id="company" class="section-spacing l-wrapper">
+      <h2 class="section-title">会社概要</h2>
+      <p class="section-subtitle">
+        渋谷区を拠点に、地域に根ざした工務店として、お客様の信頼を第一に活動しております。
+        確かな技術と誠実な対応で、理想の住まいづくりをサポートします。
+      </p>
+
+      <div class="company__content">
+        <div class="company__info">
+          <h3 style="font-family: var(--font-body); font-weight: 700; color: var(--color-primary);">㈱赤羽工務店</h3>
+          <p>
+            私たちは渋谷区に拠点を置く工務店として、都市生活に最適な住まいを提供しています。
+            伝統的な職人技と革新的なデザインを融合させ、お客様一人ひとりのライフスタイルに合わせた唯一無二の空間を創造します。
+            「住まい」を通じて、お客様の豊かな未来を築くお手伝いをいたします。
+          </p>
+          <dl>
+            <dt>会社名</dt>
+            <dd>株式会社 赤羽工務店</dd>
+            <dt>所在地</dt>
+            <dd>東京都渋谷区西原１丁目２６−５ セントラル幡ヶ谷</dd>
+            <dt>設立</dt>
+            <dd>2005年10月</dd>
+            <dt>代表者</dt>
+            <dd>代表取締役 赤羽 太郎</dd>
+            <dt>資本金</dt>
+            <dd>1,000万円</dd>
+            <dt>事業内容</dt>
+            <dd>
+              建築工事の設計・施工・監理<br>
+              リフォーム・増改築工事<br>
+              不動産の売買・仲介・賃貸管理
+            </dd>
+            <dt>建設業許可</dt>
+            <dd>東京都知事許可（般-05）第123456号</dd>
+          </dl>
+        </div>
+        <img src="https://images.unsplash.com/photo-1531591022136-eb8b0da1e6d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4OTk1ODZ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBtaW5pbWFsaXN0JTIwdXJiYW4lMjBhcmNoaXNlY3R1cmV8ZW58MHwwfHx8MTc4NDIwMDAzMHww&ixlib=rb-4.1.0&q=80&w=1080" alt="モダンな建築物の外観" class="company__image">
+      </div>
+    </section>
+
+    <section data-section="voice" id="voice" class="section-spacing l-wrapper" style="background-color: var(--color-surface);">
+      <h2 class="section-title">お客様の声</h2>
+      <p class="section-subtitle">
+        実際に私たちと共に家づくりを進められたお客様からいただいた、貴重なご意見・ご感想です。
+        お客様の喜びの声が、私たちの原動力となっています。
+      </p>
+
+      <div class="voice__grid">
+        <div class="voice__item">
+          <p class="voice__text">
+            「渋谷での家探しは困難を極めましたが、赤羽工務店さんとの出会いが全てを変えました。
+            限られた敷地の中で、私たちの想像を遥かに超える開放的で機能的な住まいを実現してくださり、毎日が本当に快適です。」
+          </p>
+          <span class="voice__author">渋谷区在住 S様</span>
+        </div>
+
+        <div class="voice__item">
+          <p class="voice__text">
+            「デザイン性の高さはもちろんのこと、職人さんの丁寧な仕事ぶりに感動しました。
+            細部にまでこだわりが感じられ、住むほどに愛着が湧く家です。
+            アフターサポートも充実しており、安心して暮らせています。」
+          </p>
+          <span class="voice__author">世田谷区在住 K様</span>
+        </div>
+
+        <div class="voice__item">
+          <p class="voice__text">
+            「初めての家づくりで不安なことも多かったのですが、担当の方が親身になって相談に乗ってくださり、
+            一つ一つ丁寧に説明してくれたおかげで、安心して進めることができました。
+            本当にありがとうございました。」
+          </p>
+          <span class="voice__author">目黒区在住 T様</span>
+        </div>
+      </div>
+    </section>
+
+    <section data-section="contact" id="contact" class="section-spacing l-wrapper">
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-subtitle">
+        家づくりに関するご相談、資料請求など、お気軽にお問い合わせください。
+        専門スタッフが丁寧に対応させていただきます。
+      </p>
+
+      <div class="contact__content">
+        <div class="contact__info">
+          <h3>ご相談・お問い合わせ</h3>
+          <p>
+            お客様の理想の住まいを実現するために、まずはお話をお聞かせください。
+            経験豊富なスタッフが、お客様の疑問や不安を解消し、最適なプランをご提案いたします。
+          </p>
+          <a href="#" class="c-btn" style="background-color: var(--color-primary); color: #fff;">お問い合わせフォームへ</a>
+
+          <ul>
+            <li><strong>電話でのお問い合わせ</strong></li>
+            <li><a href="tel:03-3466-1936">03-3466-1936</a></li>
+            <li>受付時間：平日 9:00 - 18:00</li>
+          </ul>
+        </div>
+        <div class="contact__map">
+          <p>Googleマップ（埋め込みイメージ）</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="y"></span> ㈱赤羽工務店. All Rights Reserved.</p>
+  </footer>
+
+  <div class="c-floating-cta">
+    <a href="#contact" class="c-btn">お問い合わせ</a>
+  </div>
+<script>
+/* nav.js — 全画面ハンバーガーの開閉（背後スクロールロック）。全デモ共通の不変挙動。 */
+(function () {
+  var t = document.querySelector('.js-nav-toggle');
+  var n = document.getElementById('nav');
+  if (t && n) {
+    t.addEventListener('click', function () {
+      var open = t.getAttribute('aria-expanded') === 'true';
+      t.setAttribute('aria-expanded', String(!open));
+      n.classList.toggle('is-open', !open);
+      document.body.style.overflow = open ? '' : 'hidden';
+    });
+    n.addEventListener('click', function (e) {
+      if (e.target.closest('a')) { t.setAttribute('aria-expanded', 'false'); n.classList.remove('is-open'); document.body.style.overflow = ''; }
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { t.setAttribute('aria-expanded', 'false'); n.classList.remove('is-open'); document.body.style.overflow = ''; } });
+  }
+  var y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+
+  /* スクロールリビール（抑制的モーション）：各 data-section の直下要素を
+     ふわっと表示。クラスはJSで付与するのでJS無効環境では常に見える。
+     prefers-reduced-motion は base.css 側の全体無効化が効く。 */
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-inview'); io.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    document.querySelectorAll('[data-section]').forEach(function (sec) {
+      var kids = Array.prototype.slice.call(sec.children);
+      kids.forEach(function (el, i) {
+        el.classList.add('js-reveal');
+        el.style.transitionDelay = Math.min(i * 90, 360) + 'ms';
+        io.observe(el);
+      });
+    });
+  }
+})();
+
+</script>
+</body>
+</html>
